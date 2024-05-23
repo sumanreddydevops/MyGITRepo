@@ -1,0 +1,105 @@
+
+  Git Installation:
+ -------------------------
+   # apt-get update
+   # apt-get install git-core -y
+   # git --version
+
+                                                Git Commands
+                                               ------------------------
+    # git init    ---> Initialized empty Git repository
+    # ls -a
+  
+ Clone repo
+ ----------------
+   visit  --> www.github.com --> create a New Account 
+                                              --> create a New git repo
+                    
+    # git clone https://github.com/sathyadevops/dev8am.git
+    # cd dev9am 
+    # git config --global user.name sumanreddydevops
+    # git config --global user.email sathyadevops1@gmail.com
+    # cd       --> to move to home dir
+    # ls -a    --> to list hidden files
+
+    # cat .gitconfig
+[user]
+        name = sathyadevops
+        email = sathyadevops1@gmail.com
+
+   # cd dev8am
+   # vi README.md
+  [press 'i' for insert ]
+     THIS IS A DEMO REPO
+     CREATED BY SATHYA TECH
+      ....
+   [press ':wq' --> for write and quit ]
+
+   # git status
+   # git add README.md            ---> to move code to stage area
+   # git status
+   # git commit -m "meta data"  ---> to save code in Local repo
+   # git status
+   # git push                                ---> to push code to Global repo
+
+Method-1: Git push using tokens
+-----------------------------------------------
+   https://github.com/sathyadevops  --> profile ---> select 'settings'
+      select 'Developer Settings'  --> select 'Personal access tokens'
+
+  select "Generate new token"  --> Create "New personal access token"
+Ex:
+  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
+
+Method-2: Git push using Keys
+-----------------------------------------------
+     # cd ~   ---> to move to home dir
+     # ls -a 
+     # cd  .ssh
+     # ssh-keygen   --> to generate a key-pair
+     # ls 
+   id_rsa.pub ---> public key
+   id_rsa        ---> private key
+
+visit --> https://github.com/sathyadevops/dev8am  --> select "Settings"
+  select "Deploy keys"  --> add deploy key  --> copy & paste public key
+  select "Allow write access"  --> add key
+
+     # cd dev8am
+     # git remote set-url origin git@github.com:sumanreddydevops/MyGITRepo.git
+     # vi demo.java
+  class Demo
+  {
+     public static void main(...)
+     {
+         s.o.print(" Hello World!"); 
+         s.o.print(" Hello World!"); 
+     }
+  }
+  [press :wq  --> write and quit ]
+  
+    # git add demo.java
+    # git commit -m "java code"
+    # git push 
+
+    
+
+
+
+  # git log
+  # git log -p
+  # git log --since=28-jun-2023 --until=29-jun-2023
+  # git log --oneline
+  # git diff 7f2f8b8..a58cb14
+
+  #  mkdir mydir
+  #  git mv sample.c mydir/sample.c
+  #  git rm test.java
+  #  git commit -am "files moved"
+  #  git push
+
+to recover a Deleted file:
+------------------------------------
+   # rm demo.java
+   # git status
+   # git restore demo.java

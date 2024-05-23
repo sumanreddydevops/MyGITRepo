@@ -1,0 +1,226 @@
+
+                                           HA-Proxy Configuration
+                                          ----------------------------------
+ Step-1:  create Three Servers
+-----------------------------------------
+                         1 - HA-Proxy (Ubuntu)
+                         2 - Nodes (Ubuntu, Amazon)
+
+ Step-2:  Install HA-Proxy :
+------------------------------------
+                         for Ubuntu / Debian
+                                 * apt
+                                 * apt-get
+
+                         for Amazon / Redhat
+                                 * yum
+                                 * rpm (Redhat Package Manager)
+
+                         # cat /etc/os-release
+                         # whoami
+                         # sudo su - 
+                         # apt-get update                      ---> to update repo
+                         # apt-get install haproxy -y
+                         # haproxy -version
+
+
+
+                                                  Linux Servers
+                                                 ---------------------
+ Unix Distributions:
+ --------------------------
+    * Solaris (SUN-OS), AIX (IBM), HP-UX (HP-Corp), MAC(Apple)
+    * System-V (AT&T Bell Labs), LINUX (Linus Torvald),
+    * BSD Unix (Berkeley Software Distribution Unix) ...
+
+ Linux Distributions:
+ ---------------------------
+    * Redhat, Ubuntu, Debian , SuSE, Berkeley Linux, Mint Linux
+    * Amazon Linux, Centos, Turbo Linux, Mandark, Fedora
+    * Oracle Enterprise Linux, Gentoo, Open Linux, ...
+
+ #1. VM-Ware
+ #2. Virtual Box
+ #3. Vagrant
+ #4. Cloud (AWS, Azure, GCP, IBM, Oracle Cloud..)
+
+Google --> "aws free tier"  
+
+                                                  AWS-EC2 Instance
+                                                 ---------------------------
+                                      * create a Free AWS Account 
+                                      * select "Services"  --> "Compute"
+                                      * select "EC2" (Elastic Compute Cloud)
+                                      * select "Launch Instance"
+
+  Step-1:  Name and tags   --> "Web-Server"
+
+  Step-2:  Application and OS Images  --> "Ubuntu"
+
+  Step-3:  Instance type   --> "t2.micro" (1 core, 1 Gb RAM)
+
+  Step-4:  Key pair  --> "download a new key"
+
+  Step-5:  Firewall (security groups)  --> allow "SSH, HTTP, HTTPS"
+
+  Step-6:  Configure storage  --> "10Gb"
+
+  Step-7:  Number of instances  --> "1"  ---> Launch instance
+
+
+Google --> "git for windows"  ---> Download and Install "Git-Bash"
+
+  # cp ~/Downloads/DEV_730am.pem ~/Desktop/
+  # ssh -i "DEV_730am.pem" ec2-user@ec2-3-21-247-140.us-east-2.compute.amazonaws.com
+
+
+                                            Linux Commands
+                                          ---------------------------
+                  # cat  /etc/os-release
+                  # who
+                  # whoami
+                  # date
+                  # cal
+                  # cal 2024
+                  # cal may 2024
+                  # pwd
+                  # clear
+                  # sudo su -         ---> to switch for root user
+
+ to get IP-Address:
+ -------------------------
+                  # hostname -i
+                  # ip addr   [OR]    ip a
+
+ to Host Name: 
+ ---------------------
+                  # hostname
+                  # hostname -f      ---> to get FQDN
+
+ Files Management:
+---------------------------
+                  # mkdir mydir
+                  # mkdir dir{1..10}
+                  # touch demo.txt     ---> to create an empty file
+                  # touch file{1..100}.txt
+                  # cat > demo.txt       ---> to insert data
+HELLO WORLD
+GOOD DAY
+BYE
+[ctrl + d]
+                  # cat demo.txt       ---> to display data
+                  # cat >> demo.txt    --> to append data
+SATHYA TECH
+DEVOPS
+[ctrl + d]
+                  # cat demo.txt > sample.txt   --> to copy data
+                  # cp demo.txt  devops        --> for file copy   
+                  # mv  devops  aws              --> for file move [OR] rename
+                  # rm demo.txt                      --> for file remove
+                  # rmdir mydir
+                  # rm -rf *.txt
+                  # rm -rf * 
+
+Memory Management:
+-------------------------------
+                  # free      ---> to get Primary memory  (RAM)
+                  # free -h
+                  # df          ---> te get Secondary memory (HDD)
+                  # df -h
+                  # du          ---> directory usage
+                  # du /etc
+
+Process Management:
+-------------------------------
+
+                  # ps 
+                  # ps -ef 
+                  # ps -ef | grep java
+                  # ps -ef | grep mysql
+          Syntax:
+                  # kill <pid>
+             Ex:
+                  # sleep 100&
+                  # kill  1498         --> to kill process
+                  # kill -9   1485    --> for force kill 
+                  # killall  sleep    --> to kill all sleep process
+                  # pkill sleep
+
+to List files:
+----------------
+                 # ls 
+                 # ls -i     --> to list inode values
+                 # ls -a    --> to list hidden files
+                 # ls -t     --> to list files by its time of modify
+                 # ls -s    --> to list files by its size
+                 # ls -r     --> to list files in desc. order
+                 # ls -l      --> to list long list format
+
+
+
+
+
+
+          
+
+
+
+
+             
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          
+                               
+            
+
+
+
+
+
+
+
+
+
+
+
+

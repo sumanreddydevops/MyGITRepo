@@ -1,0 +1,95 @@
+
+                                                  Linux Servers
+                                                 ---------------------
+ Unix Distributions:
+ --------------------------
+    * Solaris (SUN-OS), AIX (IBM), HP-UX (HP-Corp), MAC(Apple)
+    * System-V (AT&T Bell Labs), LINUX (Linus Torvald),
+    * BSD Unix (Berkeley Software Distribution Unix) ...
+
+ Linux Distributions:
+ ---------------------------
+    * Redhat, Ubuntu, Debian , SuSE, Berkeley Linux, Mint Linux
+    * Amazon Linux, Centos, Turbo Linux, Mandark, Fedora
+    * Oracle Enterprise Linux, Gentoo, Open Linux, ...
+
+ #1. VM-Ware
+ #2. Virtual Box
+ #3. Vagrant
+ #4. Cloud (AWS, Azure, GCP, IBM, Oracle Cloud..)
+
+Google --> "aws free tier"  
+
+                                                  AWS-EC2 Instance
+                                                 ---------------------------
+                                      * create a Free AWS Account 
+                                      * select "Services"  --> "Compute"
+                                      * select "EC2" (Elastic Compute Cloud)
+                                      * select "Launch Instance"
+
+  Step-1:  Name and tags   --> "Web-Server"
+
+  Step-2:  Application and OS Images  --> "Redhat9"
+
+  Step-3:  Instance type   --> "t2.micro" (1 core, 1 Gb RAM)
+
+  Step-4:  Key pair  --> "download a new key"
+
+  Step-5:  Firewall (security groups)  --> allow "SSH, HTTP, HTTPS"
+
+  Step-6:  Configure storage  --> "10Gb"
+
+  Step-7:  Number of instances  --> "1"  ---> Launch instance
+
+
+Google --> "git for windows"  ---> Download and Install "Git-Bash"
+
+  # cp ~/Downloads/DEV_730am.pem ~/Desktop/
+  # ssh -i "DEV_730am.pem" ec2-user@ec2-3-21-247-140.us-east-2.compute.amazonaws.com
+
+
+                                            Linux Commands
+                                          ---------------------------
+                                       # cat  /etc/os-release
+                                       # date
+                                       # who
+                                       # whoami
+                                       # cal
+                                       # cal 2024
+                                       # cal may 2024
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          
+                               
+            
+
+
+
+
+
+
+
+
+
+
+
+

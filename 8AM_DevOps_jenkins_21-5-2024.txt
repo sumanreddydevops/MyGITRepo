@@ -1,0 +1,183 @@
+                                                         Jenkins Installation 
+                                                   ----------------------------------------
+Google ----> jenkins download
+
+Methods:
+=======
+     * apt-get installation          [OR]     <------ on Ubuntu
+
+     * yum installation              [OR]     <------ on Amazon / Centos / Redhat
+
+     * Distribution Method                      <----- on Ubuntu / Amazon
+
+Methon-1: Jenkins Installation for Ubuntu / Debain:
+--------------------------------------------------------------------------
+           # sudo su -
+           # apt-get update      
+           # apt-get install openjdk-11-jdk  -y	
+           # apt-get install git-core -y
+           # apt-get install ant  -y
+           # apt-get install maven  -y
+
+Google ---> jenkins download
+
+Step-1: Download Jenkins Key
+--------------------------------------------
+           #  curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+Step-2: add a Jenkins apt repository entry
+--------------------------------------------
+  # echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+              
+Step-3: Install Jenkins : 
+-----------------------------------
+           # apt-get update
+           # apt-get install fontconfig openjdk-11-jre
+           # apt-get install jenkins  -y
+	
+ to Change Jenkins port:   [OR]
+ -----------------------------------
+     # vi /etc/default/jenkins
+           HTTP_PORT=9090
+
+     # service  jenkins restart
+     # netstat -lntp
+  Browser --> http://<Public IP>:9090
+
+to change tomcat port : 
+----------------------------------
+   # apt-get install tomcat9 -y
+   # vi /etc/tomcat9/server.xml
+         <Connector port="9090"
+ 
+   # service tomcat9 restart
+
+
+Method-2: Jenkins Installation for Amazon / Redhat:
+-------------------------------------------------------------------------
+           # sudo su -
+           # yum update   
+           # yum install java -y
+           # yum install git-core -y
+           # yum install ant  -y
+           # yum install maven  -y
+
+Step-1: Download a Jenkins Key 
+-----------------------------------------------
+    #   sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+    # sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+Step-2: Install Jenkins :  
+-----------------------------------
+   # yum install fontconfig java-11-openjdk
+   # yum install jenkins
+   # systemctl start jenkins
+
+           
+     
+  to Change Jenkins port: (Amazon)
+ -------------------------------------
+     # vi /etc/sysconfig/jenkins
+           JENKINS_PORT="9090"
+
+     # systemctl restart jenkins
+
+
+
+Method-3: Distribution Method
+---------------------------------------------
+     * search & Download packages
+     * Extract packages
+     * set Paths 
+
+ Step-1 : Download packages:
+ --------------------------------------------
+                # sudo su -
+                # cd /opt
+                # wget http://jdk8.tar.gz
+                # wget http://tomcat9.tar.gz
+                # wget http://ant1.10.5.tar.gz
+                # wget http://maven3.6.0.tar.gz
+
+  Step-2 : Extract packags:
+ ----------------------------------------
+                # tar -xzf  jdk8.tar.gz
+                # tar -xzf  tomcat9.tar.gz
+                # tar -xzf  ant1.10.5.tar.gz
+                # tar -xzf  maven3.6.0.tar.gz
+
+  Step-3 : Set paths :
+ -----------------------------
+                # cd ~ 
+                # ls -a
+                # vi  .profile    [OR]  # vi  .bashrc
+
+                export JAVA_HOME="/opt/jdk1.8.0_333"
+                export  PATH=$JAVA_HOME/bin:$PATH
+
+                export CATALINA_HOME="/opt/apache-tomcat-9.0.65"
+                export  PATH=$CATALINA_HOME/bin:$PATH
+
+                export  ANT_HOME="/opt/apache-ant-1.10.12"
+                export  PATH=$ANT_HOME/bin:$PATH
+
+                export  M2_HOME="/opt/apache-maven-3.8.6"
+                export  PATH=$M2_HOME/bin:$PATH
+              [press 'Esc']
+              [:wq  ---> write and quit ]
+
+
+  Step-4 : Update paths:
+ --------------------------------
+                   #source .profile
+                   #java -version
+                   #ant   -version
+                   #mvn --version
+                   #echo $CATALINA_HOME
+ 
+                   #startup.sh
+                   #netstat -lntp
+                   #shutdown.sh
+
+# cd /opt/apache-tomcat-9.0.50/webapps/
+# wget https://mirrors.tuna.tsinghua.edu.cn/jenkins/war-stable/2.289.2/jenkins.war
+
+
+
+
+
+  
+     Browser ---> http://<Public IP-Addr>:8080/jenkins
+
+
+To Set paths:
+=============
+    Jenkins  --> select "Manage Jenkins" --> "tools"
+
+ Jenkins apt-get Method:
+ ------------------------------------
+   # Java path  :  /usr/lib/jvm/java-11-openjdk-amd64
+   # Git path :  /usr/bin/git
+   # ANT Path:   /usr/share/ant/
+   # Maven Path:  /usr/share/maven/
+
+  
+ Jenkins user Permissions:
+ --------------------------------------
+   # cat /etc/passwd
+   # cat /etc/passwd | grep jenkins
+
+   # apt-get install acl -y
+   # setfacl -m u:jenkins:rwx /opt
+   # getfacl /opt 
+
+   # setfacl -m u:jenkins:rwx /var/lib/tomcat9/webapps
+   # getfacl /var/lib/tomcat9/webapps/ 
+
+
+
+

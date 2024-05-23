@@ -1,0 +1,281 @@
+
+                                           HA-Proxy Configuration
+                                          ----------------------------------
+ Step-1:  create Three Servers
+-----------------------------------------
+                         1 - HA-Proxy (Ubuntu)
+                         2 - Nodes (Ubuntu, Amazon)
+
+ Step-2:  Install HA-Proxy :
+------------------------------------
+                         for Ubuntu / Debian
+                                 * apt
+                                 * apt-get
+
+                         for Amazon / Redhat
+                                 * yum
+                                 * rpm (Redhat Package Manager)
+
+                         # cat /etc/os-release
+                         # whoami
+                         # sudo su - 
+                         # apt-get update                      ---> to update repo
+                         # apt-get install haproxy -y
+                         # haproxy -version
+
+ Step-3:  Install Web-Server, App-Server, DB-Server
+ ---------------------------------------------------------------------
+ Web-Server:
+ -----------------
+    * to deploy static web-pages (.html files)
+    * packages:   apache, httpd, nginx
+    * port:  80 (apache)
+    * path:  /var/www/html/
+
+ App-Server:
+ -----------------
+    * to deploy static and dynamic web-pages (.war files)
+    * packages:   tomcat, web-logic, JBoss
+    * port:  8080 (tomcat)
+    * path:  /var/lib/tomcat/webapps
+
+ DB-Server:
+ -----------------
+    * to manage Data (insert, update, select, delete ...)
+    * packages:   mysql, sql-server, DB2, mariadb, oracle ...
+    * port:  3306 (mysql)
+
+Server-1:  Ubuntu
+===============
+ 
+                   # cat /etc/os-release
+                   # sudo su -                       ---> to switch for root user
+                   # apt-get update
+                   # apt-get install openjdk-11-jdk -y    ---> to install java
+                   # java -version
+                   # which java
+                   # apt-get install apache2 -y               ---> to install web-server 
+                   # apt-get install tomcat9 -y               ---> to install app-server 
+                   # apt-get install mysql-server -y       ---> to install db-server 
+
+                   # service apache2 start                ---> to start services
+                   # service tomcat9 start
+                   # service mysql start
+                   # apt-get install net-tools -y
+                   # netstat -lntp                               ---> to list ports
+                   # service apache2 status
+                   # service apache2 stop
+                   # service apache2 enable
+
+ Server-2:  Amazon
+===============
+ 
+                   # cat /etc/os-release
+                   # sudo su -                       ---> to switch for root user
+                   # yum update  -y
+                   # yum install java -y          ---> to install java
+                   # java -version
+                   # which java
+                   # yum install httpd -y                       ---> to install web-server 
+                   # yum install tomcat -y                    ---> to install app-server 
+                   # yum install mariadb-server -y      ---> to install db-server 
+
+                   # systemctl start httpd                ---> to start services
+                   # systemctl start tomcat
+                   # systemctl start mariadb
+                   # netstat -lntp                               ---> to list ports
+                   # systemctl status httpd                ---> to start services
+                   # systemctl stop tomcat
+                   # systemctl disable mariadb
+
+
+Step-4:  Deploy index.html file :
+ -------------------------------------------
+                   # cd /var/www/html/
+                   # ls
+                   # rm index.html
+                   # vi index.html
+     [press 'i' for insert mode ]
+ 
+<h1> Hello from Web-Server </h1>
+<h1> Good day! </h1>
+<h1> ****************** </h1>
+ 
+     [press 'Esc' key ]
+     [:wq  --> for write and quit ]
+
+
+   Step-5: to get Node IP-Address and Host Names:
+   --------------------------------------------------------------------
+                     # hostname -i     (for IP-Addr)
+                     # hostname -f     (for FQDN)
+          
+                     # vi /etc/hosts
+     172.31.8.230   ip-172-31-8-230.us-east-2.compute.internal
+     172.31.4.61     ip-172-31-4-61.us-east-2.compute.internal
+     172.31.7.143   ip-172-31-7-143.us-east-2.compute.internal
+
+
+
+
+
+
+
+
+
+  Step-6: to Configure HA-Proxy : 
+   ----------------------------------------------
+        # vi /etc/haproxy/haproxy.cfg
+global
+    daemon
+    maxconn 256
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+frontend http-in
+    bind *:80
+    balance roundrobin
+    default_backend servers
+backend servers
+    server web1 172.31.30.188:80 check maxconn 32
+    server web2 172.31.30.182:80 check maxconn 32 
+ 
+ 
+     # vi /etc/default/haproxy
+              ENABLED=1
+   
+      # service haproxy restart
+
+  Browser ---> http://<HA-Proxy IP-Address>
+
+    # curl http://localhost
+    # while true; do curl http://localhost; sleep 1; done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                  Linux Servers
+                                                 ---------------------
+ Unix Distributions:
+ --------------------------
+    * Solaris (SUN-OS), AIX (IBM), HP-UX (HP-Corp), MAC(Apple)
+    * System-V (AT&T Bell Labs), LINUX (Linus Torvald),
+    * BSD Unix (Berkeley Software Distribution Unix) ...
+
+ Linux Distributions:
+ ---------------------------
+    * Redhat, Ubuntu, Debian , SuSE, Berkeley Linux, Mint Linux
+    * Amazon Linux, Centos, Turbo Linux, Mandark, Fedora
+    * Oracle Enterprise Linux, Gentoo, Open Linux, ...
+
+ #1. VM-Ware
+ #2. Virtual Box
+ #3. Vagrant
+ #4. Cloud (AWS, Azure, GCP, IBM, Oracle Cloud..)
+
+Google --> "aws free tier"  
+
+                                                  AWS-EC2 Instance
+                                                 ---------------------------
+                                      * create a Free AWS Account 
+                                      * select "Services"  --> "Compute"
+                                      * select "EC2" (Elastic Compute Cloud)
+                                      * select "Launch Instance"
+
+  Step-1:  Name and tags   --> "Web-Server"
+
+  Step-2:  Application and OS Images  --> "Ubuntu"
+
+  Step-3:  Instance type   --> "t2.micro" (1 core, 1 Gb RAM)
+
+  Step-4:  Key pair  --> "download a new key"
+
+  Step-5:  Firewall (security groups)  --> allow "SSH, HTTP, HTTPS"
+
+  Step-6:  Configure storage  --> "10Gb"
+
+  Step-7:  Number of instances  --> "1"  ---> Launch instance
+
+
+Google --> "git for windows"  ---> Download and Install "Git-Bash"
+
+  # cp ~/Downloads/DEV_730am.pem ~/Desktop/
+  # ssh -i "DEV_730am.pem" ec2-user@ec2-3-21-247-140.us-east-2.compute.amazonaws.com
+
+
+
+
+
+
+
+
+
+
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          
+                               
+            
+
+
+
+
+
+
+
+
+
+
+
+
